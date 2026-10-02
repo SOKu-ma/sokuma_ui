@@ -18,6 +18,7 @@ class ExampleApp extends StatefulWidget {
 
 class _ExampleAppState extends State<ExampleApp> {
   String _seed = 'Default';
+  ThemeMode _themeMode = ThemeMode.system;
   String _position = 'FW';
 
   @override
@@ -25,6 +26,11 @@ class _ExampleAppState extends State<ExampleApp> {
     return MaterialApp(
       title: 'sokuma_ui example',
       theme: buildAppTheme(seedColor: _seeds[_seed]!),
+      darkTheme: buildAppTheme(
+        seedColor: _seeds[_seed]!,
+        brightness: Brightness.dark,
+      ),
+      themeMode: _themeMode,
       home: Builder(
         builder: (context) {
           final textTheme = Theme.of(context).textTheme;
@@ -47,6 +53,20 @@ class _ExampleAppState extends State<ExampleApp> {
                   ],
                 ),
                 const SizedBox(height: AppSpacing.lg),
+                Text('themeMode', style: textTheme.titleMedium),
+                const SizedBox(height: AppSpacing.sm),
+                Wrap(
+                  spacing: AppSpacing.sm,
+                  children: [
+                    for (final mode in ThemeMode.values)
+                      AppChoiceChip(
+                        label: mode.name,
+                        selected: _themeMode == mode,
+                        onSelected: (_) => setState(() => _themeMode = mode),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.lg),
                 Text('AppChoiceChip', style: textTheme.titleMedium),
                 const SizedBox(height: AppSpacing.sm),
                 Wrap(
@@ -59,6 +79,7 @@ class _ExampleAppState extends State<ExampleApp> {
                         onSelected: (_) => setState(() => _position = p),
                       ),
                     const AppChoiceChip(label: '無効', selected: false),
+                    const AppChoiceChip(label: '無効（選択中）', selected: true),
                   ],
                 ),
                 const SizedBox(height: AppSpacing.lg),

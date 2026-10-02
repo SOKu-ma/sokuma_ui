@@ -19,7 +19,7 @@
 | トークン | `AppRadius` | 角丸（sm / md / lg / full） |
 | トークン | `AppTextStyles` | headline / title / body / label / caption |
 | テーマ | `buildAppTheme(seedColor:)` | シード色からアプリごとのテーマを生成 |
-| 部品 | `AppChoiceChip` | 選択時はプライマリで塗りつぶし、チェックマークなし |
+| 部品 | `AppChoiceChip` | 選択時はプライマリで塗りつぶすだけ（チェックマークなし・枠線の太さも変えない）。ライト / ダーク対応 |
 
 ## 導入方法（git 依存）
 
@@ -36,8 +36,11 @@ dependencies:
 ```dart
 import 'package:sokuma_ui/sokuma_ui.dart';
 
+const seed = Color(0xFF00897B);
+
 MaterialApp(
-  theme: buildAppTheme(seedColor: const Color(0xFF00897B)),
+  theme: buildAppTheme(seedColor: seed),
+  darkTheme: buildAppTheme(seedColor: seed, brightness: Brightness.dark),
   home: ...,
 );
 
@@ -83,7 +86,11 @@ sokuma_ui を手元で修正しながらアプリで確認したいときは、`
 
 ## example
 
-`example/` で部品とテーマを確認できます。
+部品とテーマの見た目は、ブラウザで確認できます（main への push ごとに自動更新）。
+
+**https://soku-ma.github.io/sokuma_ui/**
+
+ソースは `example/` にあります。手元で動かす場合は次のとおりです。
 
 ```sh
 cd example

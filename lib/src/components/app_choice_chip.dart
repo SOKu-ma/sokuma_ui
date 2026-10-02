@@ -6,7 +6,9 @@ import '../tokens/app_text_styles.dart';
 
 /// 単一選択用のチップ。
 ///
-/// 選択時はプライマリ色で塗りつぶすだけで、チェックマークは表示しない。
+/// 選択時はプライマリ色で塗りつぶすだけで、チェックマークは表示せず、
+/// 枠線の太さも選択状態で変えない。色はすべて [ColorScheme] から取るため、
+/// ライト / ダークどちらのテーマでもそのまま使える。
 class AppChoiceChip extends StatelessWidget {
   const AppChoiceChip({
     super.key,
@@ -24,19 +26,32 @@ class AppChoiceChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final enabled = onSelected != null;
+    // 無効状態のラベルは Chip 側で半透明になるので、ここでは色だけ決める。
+    final filled = selected && enabled;
+    final disabledFill = colorScheme.onSurface.withValues(alpha: 0.12);
 
     return ChoiceChip(
       label: Text(label),
       selected: selected,
       onSelected: onSelected,
       showCheckmark: false,
-      selectedColor: colorScheme.primary,
+      color: WidgetStateProperty.resolveWith((states) {
+        if (!states.contains(WidgetState.selected)) return Colors.transparent;
+        return states.contains(WidgetState.disabled)
+            ? disabledFill
+            : colorScheme.primary;
+      }),
       labelStyle: AppTextStyles.label.copyWith(
-        color: selected ? colorScheme.onPrimary : colorScheme.onSurface,
+        color: filled ? colorScheme.onPrimary : colorScheme.onSurface,
       ),
-      side: selected
-          ? BorderSide(color: colorScheme.primary)
-          : BorderSide(color: colorScheme.outline),
+      side: BorderSide(
+        color: !enabled
+            ? disabledFill
+            : selected
+            ? colorScheme.primary
+            : colorScheme.outline,
+      ),
       shape: const RoundedRectangleBorder(borderRadius: AppRadius.fullAll),
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
     );
