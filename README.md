@@ -88,7 +88,7 @@ sokuma_ui を手元で修正しながらアプリで確認したいときは、`
 
 部品とテーマの見た目は、ブラウザで確認できます（main への push ごとに自動更新）。
 
-**https://soku-ma.github.io/sokuma_ui/**
+**https://www.so-kuma.com/sokuma_ui/**
 
 ソースは `example/` にあります。手元で動かす場合は次のとおりです。
 

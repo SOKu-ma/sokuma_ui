@@ -1,5 +1,5 @@
 # example アプリを Web ビルドして GitHub Pages に公開する。
-# 公開先: https://soku-ma.github.io/sokuma_ui/
+# 公開先: https://www.so-kuma.com/sokuma_ui/
 name: Deploy example to Pages
 
 on:
