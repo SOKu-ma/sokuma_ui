@@ -1,0 +1,19 @@
+name: sokuma_ui_example
+description: sokuma_ui の部品確認用アプリ。
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sokuma_ui:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
