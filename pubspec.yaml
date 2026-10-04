@@ -1,6 +1,6 @@
 name: sokuma_ui
 description: SOKu-ma の個人開発 Flutter アプリで共通利用するデザインシステム。
-version: 0.1.0
+version: 0.2.0
 repository: https://github.com/SOKu-ma/sokuma_ui
 publish_to: none
 
