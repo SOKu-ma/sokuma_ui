@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_spacing.dart';
-import '../tokens/app_text_styles.dart';
+import '../tokens/sk_spacing.dart';
+import '../tokens/sk_text_styles.dart';
 
 /// 「打率 .312」「平均 58.2」のような、ラベル付きの数値表示。
 ///
 /// 数値は等幅数字で表示するので、横に並べても桁がそろう。
-class AppMetricTile extends StatelessWidget {
-  const AppMetricTile({
+class SkMetricTile extends StatelessWidget {
+  const SkMetricTile({
     super.key,
     required this.label,
     required this.value,
@@ -45,7 +45,7 @@ class AppMetricTile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        const SizedBox(height: AppSpacing.xxs),
+        const SizedBox(height: SkSpacing.xxs),
         Text.rich(
           TextSpan(
             text: value,
@@ -60,7 +60,7 @@ class AppMetricTile extends StatelessWidget {
                 ),
             ],
           ),
-          style: AppTextStyles.numeric.copyWith(color: valueColor),
+          style: SkTextStyles.numeric.copyWith(color: valueColor),
           maxLines: 1,
         ),
       ],

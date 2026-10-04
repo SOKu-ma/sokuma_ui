@@ -5,16 +5,14 @@ import 'package:sokuma_ui/sokuma_ui.dart';
 void main() {
   Widget wrap(Widget child, {Brightness brightness = Brightness.light}) =>
       MaterialApp(
-        theme: buildAppTheme(
-          colorScheme: AppColorSchemes.monochrome(brightness),
-        ),
+        theme: buildSkTheme(colorScheme: SkColorSchemes.monochrome(brightness)),
         home: Scaffold(body: Center(child: child)),
       );
 
-  group('AppSectionHeader', () {
+  group('SkSectionHeader', () {
     testWidgets('見出しとして読み上げ、trailing を右に置く', (tester) async {
       await tester.pumpWidget(
-        wrap(const AppSectionHeader(title: '最近の記録', trailing: Text('すべて'))),
+        wrap(const SkSectionHeader(title: '最近の記録', trailing: Text('すべて'))),
       );
       expect(find.text('最近の記録'), findsOneWidget);
       expect(find.text('すべて'), findsOneWidget);
@@ -25,29 +23,29 @@ void main() {
     });
   });
 
-  testWidgets('AppSectionHeader はアプリのテーマに依らずトークンの太さ', (tester) async {
+  testWidgets('SkSectionHeader はアプリのテーマに依らずトークンの太さ', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         theme: ThemeData(),
-        home: const Scaffold(body: AppSectionHeader(title: '見出し')),
+        home: const Scaffold(body: SkSectionHeader(title: '見出し')),
       ),
     );
     final style = tester.widget<Text>(find.text('見出し')).style!;
-    expect(style.fontWeight, AppTextStyles.subtitle.fontWeight);
-    expect(style.fontSize, AppTextStyles.subtitle.fontSize);
+    expect(style.fontWeight, SkTextStyles.subtitle.fontWeight);
+    expect(style.fontSize, SkTextStyles.subtitle.fontSize);
   });
 
-  group('AppEmptyState', () {
+  group('SkEmptyState', () {
     testWidgets('説明とボタンは渡したときだけ出す', (tester) async {
       await tester.pumpWidget(
-        wrap(const AppEmptyState(icon: Icons.inbox, title: 'まだありません')),
+        wrap(const SkEmptyState(icon: Icons.inbox, title: 'まだありません')),
       );
       expect(find.text('まだありません'), findsOneWidget);
       expect(find.byType(FilledButton), findsNothing);
 
       await tester.pumpWidget(
         wrap(
-          AppEmptyState(
+          SkEmptyState(
             icon: Icons.inbox,
             title: 'まだありません',
             description: '最初の記録を追加しましょう',
@@ -60,10 +58,10 @@ void main() {
     });
   });
 
-  group('AppPill', () {
+  group('SkPill', () {
     testWidgets('filled のときは塗り色の明暗から文字色を選ぶ', (tester) async {
       await tester.pumpWidget(
-        wrap(const AppPill(label: 'PRO', color: Colors.black, filled: true)),
+        wrap(const SkPill(label: 'PRO', color: Colors.black, filled: true)),
       );
       final text = tester.widget<Text>(find.text('PRO'));
       expect(text.style?.color, Colors.white);
@@ -71,33 +69,33 @@ void main() {
 
     testWidgets('色指定時は同じ色の文字に薄い面', (tester) async {
       await tester.pumpWidget(
-        wrap(const AppPill(label: '済', color: AppColors.success)),
+        wrap(const SkPill(label: '済', color: SkColors.success)),
       );
       final text = tester.widget<Text>(find.text('済'));
-      expect(text.style?.color, AppColors.success);
+      expect(text.style?.color, SkColors.success);
     });
   });
 
-  group('AppPanel', () {
+  group('SkPanel', () {
     testWidgets('onTap を渡すとタップできる', (tester) async {
       var tapped = 0;
       await tester.pumpWidget(
-        wrap(AppPanel(onTap: () => tapped++, child: const Text('カード'))),
+        wrap(SkPanel(onTap: () => tapped++, child: const Text('カード'))),
       );
       await tester.tap(find.text('カード'));
       expect(tapped, 1);
     });
   });
 
-  group('AppSettingsTile', () {
+  group('SkSettingsTile', () {
     testWidgets('onTap があり trailing が無いとシェブロンを出す', (tester) async {
       await tester.pumpWidget(
         wrap(
-          AppSettingsSection(
+          SkSettingsSection(
             title: '表示',
             children: [
-              AppSettingsTile(title: 'テーマ', value: 'ダーク', onTap: () {}),
-              AppSettingsTile(
+              SkSettingsTile(title: 'テーマ', value: 'ダーク', onTap: () {}),
+              SkSettingsTile(
                 title: '通知',
                 trailing: Switch(value: true, onChanged: (_) {}),
               ),
@@ -112,21 +110,21 @@ void main() {
 
     testWidgets('destructive はエラー色', (tester) async {
       await tester.pumpWidget(
-        wrap(AppSettingsTile(title: '削除', destructive: true, onTap: () {})),
+        wrap(SkSettingsTile(title: '削除', destructive: true, onTap: () {})),
       );
-      final scheme = AppColorSchemes.monochrome(Brightness.light);
+      final scheme = SkColorSchemes.monochrome(Brightness.light);
       expect(tester.widget<Text>(find.text('削除')).style?.color, scheme.error);
     });
   });
 
-  group('showAppConfirmDialog', () {
+  group('showSkConfirmDialog', () {
     Future<bool?> run(WidgetTester tester, String tapLabel) async {
       bool? result;
       await tester.pumpWidget(
         wrap(
           Builder(
             builder: (context) => TextButton(
-              onPressed: () async => result = await showAppConfirmDialog(
+              onPressed: () async => result = await showSkConfirmDialog(
                 context,
                 title: '削除しますか？',
                 confirmLabel: '削除',
@@ -154,15 +152,15 @@ void main() {
     });
   });
 
-  group('AppSnackBar', () {
+  group('SkSnackBar', () {
     testWidgets('連続で出しても 1 つだけ表示する', (tester) async {
       await tester.pumpWidget(
         wrap(
           Builder(
             builder: (context) => TextButton(
               onPressed: () {
-                AppSnackBar.show(context, '1 件目');
-                AppSnackBar.show(context, '2 件目', icon: Icons.check);
+                SkSnackBar.show(context, '1 件目');
+                SkSnackBar.show(context, '2 件目', icon: Icons.check);
               },
               child: const Text('show'),
             ),
@@ -177,17 +175,17 @@ void main() {
     });
   });
 
-  group('AppSegmentedControl', () {
+  group('SkSegmentedControl', () {
     testWidgets('未選択の区画をタップすると onChanged', (tester) async {
       String? changed;
       await tester.pumpWidget(
         wrap(
           SizedBox(
             width: 300,
-            child: AppSegmentedControl<String>(
+            child: SkSegmentedControl<String>(
               segments: const [
-                AppSegment(value: 'list', label: '一覧'),
-                AppSegment(value: 'stats', label: '集計'),
+                SkSegment(value: 'list', label: '一覧'),
+                SkSegment(value: 'stats', label: '集計'),
               ],
               selected: 'list',
               onChanged: (v) => changed = v,
@@ -200,21 +198,21 @@ void main() {
       await tester.tap(find.text('集計'));
       expect(changed, 'stats');
 
-      final scheme = AppColorSchemes.monochrome(Brightness.light);
+      final scheme = SkColorSchemes.monochrome(Brightness.light);
       final selectedText = tester.widget<Text>(find.text('一覧'));
       expect(selectedText.style?.color, scheme.onPrimary);
     });
   });
 
-  group('AppMetricTile', () {
+  group('SkMetricTile', () {
     testWidgets('数値は等幅数字', (tester) async {
       await tester.pumpWidget(
-        wrap(const AppMetricTile(label: '打率', value: '.312')),
+        wrap(const SkMetricTile(label: '打率', value: '.312')),
       );
       final rich = tester.widget<RichText>(
         find
             .descendant(
-              of: find.byType(AppMetricTile),
+              of: find.byType(SkMetricTile),
               matching: find.byType(RichText),
             )
             .last,
@@ -226,14 +224,14 @@ void main() {
     });
   });
 
-  group('AppLoadingOverlay', () {
+  group('SkLoadingOverlay', () {
     testWidgets('Stack の上に重ねて表示できる', (tester) async {
       await tester.pumpWidget(
         wrap(
           const SizedBox(
             width: 300,
             height: 300,
-            child: Stack(children: [AppLoadingOverlay(message: '共有中…')]),
+            child: Stack(children: [SkLoadingOverlay(message: '共有中…')]),
           ),
         ),
       );

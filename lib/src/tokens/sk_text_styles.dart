@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 /// 文字スタイルトークン。
 ///
 /// 色は持たない（テーマの ColorScheme から付与される）。
-abstract final class AppTextStyles {
+abstract final class SkTextStyles {
   static const TextStyle headline = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w800,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_radius.dart';
-import '../tokens/app_spacing.dart';
+import '../tokens/sk_radius.dart';
+import '../tokens/sk_spacing.dart';
 
 /// 画面全体を覆って操作を止め、処理中であることを示す。
 ///
 /// `Stack` の最前面に置く。[message] は多言語化済みの文言を渡す。
-class AppLoadingOverlay extends StatelessWidget {
-  const AppLoadingOverlay({super.key, this.message});
+class SkLoadingOverlay extends StatelessWidget {
+  const SkLoadingOverlay({super.key, this.message});
 
   final String? message;
 
@@ -22,12 +22,12 @@ class AppLoadingOverlay extends StatelessWidget {
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: scheme.surface,
-              borderRadius: AppRadius.lgAll,
+              borderRadius: SkRadius.lgAll,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.xl,
-                vertical: AppSpacing.lg,
+                horizontal: SkSpacing.xl,
+                vertical: SkSpacing.lg,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -37,7 +37,7 @@ class AppLoadingOverlay extends StatelessWidget {
                     child: CircularProgressIndicator(strokeWidth: 2.4),
                   ),
                   if (message != null) ...[
-                    const SizedBox(width: AppSpacing.md),
+                    const SizedBox(width: SkSpacing.md),
                     Text(message!, style: theme.textTheme.labelLarge),
                   ],
                 ],

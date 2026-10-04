@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 /// 色トークン。
 ///
-/// プライマリ系はアプリごとに `buildAppTheme` で決まるため、
+/// プライマリ系はアプリごとに `buildSkTheme` で決まるため、
 /// ここにはアプリ間で共通にしたい意味色だけを置く。
-abstract final class AppColors {
+abstract final class SkColors {
   /// seedColor を指定しない場合の既定シード色。
   static const Color defaultSeed = Color(0xFF3F51B5);
 
@@ -28,9 +28,9 @@ abstract final class AppColors {
 
 /// iOS のシステムグレーに合わせたグレースケール。
 ///
-/// モノクロ基調のアプリ（[AppColorSchemes.monochrome]）の土台になる。
+/// モノクロ基調のアプリ（[SkColorSchemes.monochrome]）の土台になる。
 /// 数字が小さいほど背景側（ライトでは明るく、ダークでは暗い）。
-abstract final class AppGrays {
+abstract final class SkGrays {
   /// ライトでの最も濃い文字色。
   static const Color ink = Color(0xFF1C1C1E);
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_spacing.dart';
+import '../tokens/sk_spacing.dart';
 
 /// アプリ共通のスナックバー。
 ///
-/// 見た目は `buildAppTheme` の snackBarTheme に従う。表示中のものは
+/// 見た目は `buildSkTheme` の snackBarTheme に従う。表示中のものは
 /// 消してから出すので、連続で呼んでも積み上がらない。
-abstract final class AppSnackBar {
+abstract final class SkSnackBar {
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> show(
     BuildContext context,
     String message, {
@@ -40,7 +40,7 @@ abstract final class AppSnackBar {
             : Row(
                 children: [
                   Icon(icon, size: 20, color: _foreground(messenger.context)),
-                  const SizedBox(width: AppSpacing.md),
+                  const SizedBox(width: SkSpacing.md),
                   Expanded(child: Text(message)),
                 ],
               ),

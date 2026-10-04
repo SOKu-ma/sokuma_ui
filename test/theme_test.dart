@@ -3,41 +3,38 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sokuma_ui/sokuma_ui.dart';
 
 void main() {
-  group('AppColorSchemes.monochrome', () {
+  group('SkColorSchemes.monochrome', () {
     test('ライトは黒、ダークは白がプライマリ', () {
-      expect(
-        AppColorSchemes.monochrome(Brightness.light).primary,
-        AppGrays.ink,
-      );
-      expect(AppColorSchemes.monochrome(Brightness.dark).primary, Colors.white);
+      expect(SkColorSchemes.monochrome(Brightness.light).primary, SkGrays.ink);
+      expect(SkColorSchemes.monochrome(Brightness.dark).primary, Colors.white);
     });
 
     test('brightness が一致する', () {
       for (final b in Brightness.values) {
-        expect(AppColorSchemes.monochrome(b).brightness, b);
+        expect(SkColorSchemes.monochrome(b).brightness, b);
       }
     });
   });
 
-  group('buildAppTheme', () {
+  group('buildSkTheme', () {
     test('colorScheme を渡すとそれを使う', () {
-      final scheme = AppColorSchemes.monochrome(Brightness.dark);
-      final theme = buildAppTheme(colorScheme: scheme);
+      final scheme = SkColorSchemes.monochrome(Brightness.dark);
+      final theme = buildSkTheme(colorScheme: scheme);
       expect(theme.colorScheme, scheme);
       expect(theme.brightness, Brightness.dark);
       expect(theme.scaffoldBackgroundColor, scheme.surfaceContainer);
     });
 
     test('scaffoldBackgroundColor を上書きできる', () {
-      final theme = buildAppTheme(scaffoldBackgroundColor: Colors.pink);
+      final theme = buildSkTheme(scaffoldBackgroundColor: Colors.pink);
       expect(theme.scaffoldBackgroundColor, Colors.pink);
     });
 
     test('部品の形はトークンにそろう', () {
-      final theme = buildAppTheme();
+      final theme = buildSkTheme();
       expect(
         theme.dialogTheme.shape,
-        const RoundedRectangleBorder(borderRadius: AppRadius.xlAll),
+        const RoundedRectangleBorder(borderRadius: SkRadius.xlAll),
       );
       expect(theme.chipTheme.showCheckmark, isFalse);
       expect(theme.snackBarTheme.behavior, SnackBarBehavior.floating);
@@ -46,7 +43,7 @@ void main() {
 
     test('seeded で primary を固定できる', () {
       const navy = Color(0xFF0C2340);
-      final scheme = AppColorSchemes.seeded(navy, primary: navy);
+      final scheme = SkColorSchemes.seeded(navy, primary: navy);
       expect(scheme.primary, navy);
     });
   });

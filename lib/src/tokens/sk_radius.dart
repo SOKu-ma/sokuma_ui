@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 /// - [lg] カード、パネル
 /// - [xl] ダイアログ、ボトムシート上端
 /// - [full] ピル型（チップ、件数バッジ）
-abstract final class AppRadius {
+abstract final class SkRadius {
   static const double xs = 4;
   static const double sm = 8;
   static const double md = 12;

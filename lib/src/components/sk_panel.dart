@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_radius.dart';
-import '../tokens/app_spacing.dart';
+import '../tokens/sk_radius.dart';
+import '../tokens/sk_spacing.dart';
 
 /// 影を使わず、細い枠線で区切る平らなカード。
 ///
 /// [onTap] を渡すとタップできるカードになる（波紋は角丸の内側に収まる）。
-class AppPanel extends StatelessWidget {
-  const AppPanel({
+class SkPanel extends StatelessWidget {
+  const SkPanel({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(AppSpacing.lg),
+    this.padding = const EdgeInsets.all(SkSpacing.lg),
     this.color,
-    this.borderRadius = AppRadius.lgAll,
+    this.borderRadius = SkRadius.lgAll,
     this.onTap,
   });
 

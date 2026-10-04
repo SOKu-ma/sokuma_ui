@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_spacing.dart';
-import '../tokens/app_text_styles.dart';
+import '../tokens/sk_spacing.dart';
+import '../tokens/sk_text_styles.dart';
 
 /// 画面内のまとまりにつける見出し。
 ///
 /// 右端に「すべて見る」ボタンや件数バッジなどを [trailing] で置ける。
-class AppSectionHeader extends StatelessWidget {
-  const AppSectionHeader({
+class SkSectionHeader extends StatelessWidget {
+  const SkSectionHeader({
     super.key,
     required this.title,
     this.trailing,
-    this.padding = const EdgeInsets.only(bottom: AppSpacing.sm),
+    this.padding = const EdgeInsets.only(bottom: SkSpacing.sm),
   });
 
   final String title;
@@ -30,7 +30,7 @@ class AppSectionHeader extends StatelessWidget {
               child: Text(
                 title,
                 // アプリ側のテーマに依らず、太さと大きさはトークンにそろえる。
-                style: AppTextStyles.subtitle.copyWith(
+                style: SkTextStyles.subtitle.copyWith(
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
                 maxLines: 1,
@@ -39,7 +39,7 @@ class AppSectionHeader extends StatelessWidget {
             ),
           ),
           if (trailing != null) ...[
-            const SizedBox(width: AppSpacing.sm),
+            const SizedBox(width: SkSpacing.sm),
             trailing!,
           ],
         ],

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_radius.dart';
-import '../tokens/app_spacing.dart';
+import '../tokens/sk_radius.dart';
+import '../tokens/sk_spacing.dart';
 
-/// [AppSegmentedControl] の 1 区画。
-class AppSegment<T> {
-  const AppSegment({required this.value, required this.label, this.icon});
+/// [SkSegmentedControl] の 1 区画。
+class SkSegment<T> {
+  const SkSegment({required this.value, required this.label, this.icon});
 
   final T value;
   final String label;
@@ -16,8 +16,8 @@ class AppSegment<T> {
 ///
 /// `SegmentedButton` よりも背が低く、選択中の区画をプライマリで塗りつぶす。
 /// タブ的な表示切り替え（一覧 / 集計 など）に使う。
-class AppSegmentedControl<T> extends StatelessWidget {
-  const AppSegmentedControl({
+class SkSegmentedControl<T> extends StatelessWidget {
+  const SkSegmentedControl({
     super.key,
     required this.segments,
     required this.selected,
@@ -25,7 +25,7 @@ class AppSegmentedControl<T> extends StatelessWidget {
     this.height = 38,
   });
 
-  final List<AppSegment<T>> segments;
+  final List<SkSegment<T>> segments;
   final T selected;
 
   /// null の場合は無効状態になる。
@@ -44,10 +44,10 @@ class AppSegmentedControl<T> extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: scheme.surface,
-          borderRadius: AppRadius.mdAll,
+          borderRadius: SkRadius.mdAll,
           border: Border.all(color: scheme.outlineVariant),
         ),
-        padding: const EdgeInsets.all(AppSpacing.xxs),
+        padding: const EdgeInsets.all(SkSpacing.xxs),
         child: Row(
           children: [
             for (final segment in segments)
@@ -72,7 +72,7 @@ class _SegmentButton<T> extends StatelessWidget {
     required this.onTap,
   });
 
-  final AppSegment<T> segment;
+  final SkSegment<T> segment;
   final bool selected;
   final VoidCallback? onTap;
 
@@ -83,7 +83,7 @@ class _SegmentButton<T> extends StatelessWidget {
     final foreground = selected ? scheme.onPrimary : scheme.onSurfaceVariant;
     // 外枠の内側に収まるよう、外枠より余白ぶん小さい角丸にする。
     const radius = BorderRadius.all(
-      Radius.circular(AppRadius.md - AppSpacing.xxs),
+      Radius.circular(SkRadius.md - SkSpacing.xxs),
     );
 
     return Semantics(
@@ -101,7 +101,7 @@ class _SegmentButton<T> extends StatelessWidget {
               children: [
                 if (segment.icon != null) ...[
                   Icon(segment.icon, size: 16, color: foreground),
-                  const SizedBox(width: AppSpacing.xs),
+                  const SizedBox(width: SkSpacing.xs),
                 ],
                 Flexible(
                   child: Text(

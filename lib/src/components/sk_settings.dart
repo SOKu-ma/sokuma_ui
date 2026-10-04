@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_radius.dart';
-import '../tokens/app_spacing.dart';
-import 'app_panel.dart';
-import 'app_section_header.dart';
+import '../tokens/sk_radius.dart';
+import '../tokens/sk_spacing.dart';
+import 'sk_panel.dart';
+import 'sk_section_header.dart';
 
 /// 設定画面のグループ。見出しの下に、区切り線入りのパネルで行を並べる。
-class AppSettingsSection extends StatelessWidget {
-  const AppSettingsSection({
+class SkSettingsSection extends StatelessWidget {
+  const SkSettingsSection({
     super.key,
     this.title,
     required this.children,
@@ -28,20 +28,20 @@ class AppSettingsSection extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (title != null)
-          AppSectionHeader(
+          SkSectionHeader(
             title: title!,
             padding: const EdgeInsets.only(
-              left: AppSpacing.xs,
-              bottom: AppSpacing.sm,
+              left: SkSpacing.xs,
+              bottom: SkSpacing.sm,
             ),
           ),
-        AppPanel(
+        SkPanel(
           padding: EdgeInsets.zero,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               for (var i = 0; i < children.length; i++) ...[
-                if (i > 0) const Divider(height: 1, indent: AppSpacing.lg),
+                if (i > 0) const Divider(height: 1, indent: SkSpacing.lg),
                 children[i],
               ],
             ],
@@ -50,9 +50,9 @@ class AppSettingsSection extends StatelessWidget {
         if (footer != null)
           Padding(
             padding: const EdgeInsets.fromLTRB(
-              AppSpacing.xs,
-              AppSpacing.sm,
-              AppSpacing.xs,
+              SkSpacing.xs,
+              SkSpacing.sm,
+              SkSpacing.xs,
               0,
             ),
             child: Text(footer!, style: theme.textTheme.bodySmall),
@@ -65,8 +65,8 @@ class AppSettingsSection extends StatelessWidget {
 /// 設定画面の 1 行。
 ///
 /// 右端は [trailing]（スイッチなど）か、[value] の文字列＋シェブロン。
-class AppSettingsTile extends StatelessWidget {
-  const AppSettingsTile({
+class SkSettingsTile extends StatelessWidget {
+  const SkSettingsTile({
     super.key,
     required this.title,
     this.icon,
@@ -115,7 +115,7 @@ class AppSettingsTile extends StatelessWidget {
               height: 32,
               decoration: BoxDecoration(
                 color: accent.withValues(alpha: 0.12),
-                borderRadius: AppRadius.smAll,
+                borderRadius: SkRadius.smAll,
               ),
               child: Icon(icon, size: 18, color: accent),
             ),

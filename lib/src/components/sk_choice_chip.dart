@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_radius.dart';
-import '../tokens/app_spacing.dart';
-import '../tokens/app_text_styles.dart';
+import '../tokens/sk_radius.dart';
+import '../tokens/sk_spacing.dart';
+import '../tokens/sk_text_styles.dart';
 
 /// 単一選択用のチップ。
 ///
 /// 選択時はプライマリ色で塗りつぶすだけで、チェックマークは表示せず、
 /// 枠線の太さも選択状態で変えない。色はすべて [ColorScheme] から取るため、
 /// ライト / ダークどちらのテーマでもそのまま使える。
-class AppChoiceChip extends StatelessWidget {
-  const AppChoiceChip({
+class SkChoiceChip extends StatelessWidget {
+  const SkChoiceChip({
     super.key,
     required this.label,
     required this.selected,
@@ -42,7 +42,7 @@ class AppChoiceChip extends StatelessWidget {
             ? disabledFill
             : colorScheme.primary;
       }),
-      labelStyle: AppTextStyles.label.copyWith(
+      labelStyle: SkTextStyles.label.copyWith(
         color: filled ? colorScheme.onPrimary : colorScheme.onSurface,
       ),
       side: BorderSide(
@@ -52,8 +52,8 @@ class AppChoiceChip extends StatelessWidget {
             ? colorScheme.primary
             : colorScheme.outline,
       ),
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.fullAll),
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+      shape: const RoundedRectangleBorder(borderRadius: SkRadius.fullAll),
+      padding: const EdgeInsets.symmetric(horizontal: SkSpacing.sm),
     );
   }
 }

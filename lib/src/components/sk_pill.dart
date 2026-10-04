@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_radius.dart';
-import '../tokens/app_spacing.dart';
+import '../tokens/sk_radius.dart';
+import '../tokens/sk_spacing.dart';
 
 /// 状態や件数を示す小さなラベル（バッジ）。
 ///
 /// - [color] 省略時: グレーの面に補助文字色
 /// - [color] 指定時: その色の文字に、同じ色を薄くした面
 /// - [filled] が true: その色で塗りつぶし、文字は明暗から自動で白黒を選ぶ
-class AppPill extends StatelessWidget {
-  const AppPill({
+class SkPill extends StatelessWidget {
+  const SkPill({
     super.key,
     required this.label,
     this.icon,
@@ -47,19 +47,19 @@ class AppPill extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: background,
-        borderRadius: AppRadius.fullAll,
+        borderRadius: SkRadius.fullAll,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.sm,
-          vertical: AppSpacing.xxs,
+          horizontal: SkSpacing.sm,
+          vertical: SkSpacing.xxs,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (icon != null) ...[
               Icon(icon, size: 14, color: foreground),
-              const SizedBox(width: AppSpacing.xs),
+              const SizedBox(width: SkSpacing.xs),
             ],
             Text(
               label,

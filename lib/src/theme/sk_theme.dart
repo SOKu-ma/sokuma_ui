@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_colors.dart';
-import '../tokens/app_radius.dart';
-import '../tokens/app_spacing.dart';
-import '../tokens/app_text_styles.dart';
-import 'app_color_schemes.dart';
+import '../tokens/sk_colors.dart';
+import '../tokens/sk_radius.dart';
+import '../tokens/sk_spacing.dart';
+import '../tokens/sk_text_styles.dart';
+import 'sk_color_schemes.dart';
 
 /// アプリ共通の [ThemeData] を組み立てる。
 ///
 /// 配色は次のどちらかで決める。
-/// - [colorScheme] を渡す（例: `AppColorSchemes.monochrome(brightness)`）
+/// - [colorScheme] を渡す（例: `SkColorSchemes.monochrome(brightness)`）
 /// - [seedColor] と [brightness] からシード配色を作る
 ///
 /// 部品のテーマ（ボタン・入力欄・カード・シート・スナックバーなど）は
 /// どの配色でも同じ形・余白になるようここで揃える。アプリ固有の調整は
 /// 戻り値に `copyWith` で重ねる。
-ThemeData buildAppTheme({
-  Color seedColor = AppColors.defaultSeed,
+ThemeData buildSkTheme({
+  Color seedColor = SkColors.defaultSeed,
   Brightness brightness = Brightness.light,
   ColorScheme? colorScheme,
   Color? scaffoldBackgroundColor,
 }) {
   final scheme =
-      colorScheme ?? AppColorSchemes.seeded(seedColor, brightness: brightness);
+      colorScheme ?? SkColorSchemes.seeded(seedColor, brightness: brightness);
   final background = scaffoldBackgroundColor ?? scheme.surfaceContainer;
   final textTheme = _textTheme(scheme);
-  const buttonShape = RoundedRectangleBorder(borderRadius: AppRadius.mdAll);
+  const buttonShape = RoundedRectangleBorder(borderRadius: SkRadius.mdAll);
   const buttonPadding = EdgeInsets.symmetric(
-    horizontal: AppSpacing.xl,
-    vertical: AppSpacing.md,
+    horizontal: SkSpacing.xl,
+    vertical: SkSpacing.md,
   );
-  final buttonText = AppTextStyles.label.copyWith(fontWeight: FontWeight.w700);
+  final buttonText = SkTextStyles.label.copyWith(fontWeight: FontWeight.w700);
 
   OutlineInputBorder inputBorder(Color color, [double width = 1]) =>
       OutlineInputBorder(
-        borderRadius: AppRadius.mdAll,
+        borderRadius: SkRadius.mdAll,
         borderSide: BorderSide(color: color, width: width),
       );
 
@@ -59,21 +59,21 @@ ThemeData buildAppTheme({
       elevation: 0,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: AppRadius.lgAll,
+        borderRadius: SkRadius.lgAll,
         side: BorderSide(color: scheme.outlineVariant),
       ),
     ),
     dialogTheme: DialogThemeData(
       backgroundColor: scheme.surface,
       surfaceTintColor: Colors.transparent,
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.xlAll),
+      shape: const RoundedRectangleBorder(borderRadius: SkRadius.xlAll),
     ),
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: scheme.surface,
       modalBackgroundColor: scheme.surface,
       surfaceTintColor: Colors.transparent,
       dragHandleColor: scheme.outline,
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.sheetTop),
+      shape: const RoundedRectangleBorder(borderRadius: SkRadius.sheetTop),
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
@@ -105,7 +105,7 @@ ThemeData buildAppTheme({
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: scheme.primary,
       foregroundColor: scheme.onPrimary,
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.lgAll),
+      shape: const RoundedRectangleBorder(borderRadius: SkRadius.lgAll),
     ),
     // 選択中は塗りで示すので、チェックマークは出さない。
     chipTheme: const ChipThemeData(showCheckmark: false),
@@ -121,8 +121,8 @@ ThemeData buildAppTheme({
       filled: true,
       fillColor: scheme.surface,
       contentPadding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.lg,
-        vertical: AppSpacing.md,
+        horizontal: SkSpacing.lg,
+        vertical: SkSpacing.md,
       ),
       border: inputBorder(scheme.outlineVariant),
       enabledBorder: inputBorder(scheme.outlineVariant),
@@ -148,15 +148,15 @@ ThemeData buildAppTheme({
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
       backgroundColor: scheme.inverseSurface,
-      contentTextStyle: AppTextStyles.label.copyWith(
+      contentTextStyle: SkTextStyles.label.copyWith(
         color: scheme.onInverseSurface,
       ),
       actionTextColor: scheme.inversePrimary,
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.mdAll),
+      shape: const RoundedRectangleBorder(borderRadius: SkRadius.mdAll),
     ),
     listTileTheme: ListTileThemeData(
       iconColor: scheme.onSurfaceVariant,
-      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+      contentPadding: const EdgeInsets.symmetric(horizontal: SkSpacing.lg),
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: scheme.primary,
@@ -167,11 +167,11 @@ ThemeData buildAppTheme({
 
 TextTheme _textTheme(ColorScheme scheme) {
   return const TextTheme(
-    headlineSmall: AppTextStyles.headline,
-    titleMedium: AppTextStyles.title,
-    titleSmall: AppTextStyles.subtitle,
-    bodyMedium: AppTextStyles.body,
-    labelLarge: AppTextStyles.label,
-    bodySmall: AppTextStyles.caption,
+    headlineSmall: SkTextStyles.headline,
+    titleMedium: SkTextStyles.title,
+    titleSmall: SkTextStyles.subtitle,
+    bodyMedium: SkTextStyles.body,
+    labelLarge: SkTextStyles.label,
+    bodySmall: SkTextStyles.caption,
   ).apply(bodyColor: scheme.onSurface, displayColor: scheme.onSurface);
 }

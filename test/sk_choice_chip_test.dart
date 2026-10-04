@@ -8,7 +8,7 @@ void main() {
     Color seed = Colors.teal,
     Brightness brightness = Brightness.light,
   }) => MaterialApp(
-    theme: buildAppTheme(seedColor: seed, brightness: brightness),
+    theme: buildSkTheme(seedColor: seed, brightness: brightness),
     home: Scaffold(body: Center(child: child)),
   );
 
@@ -22,7 +22,7 @@ void main() {
 
   for (final brightness in Brightness.values) {
     group('${brightness.name} テーマ', () {
-      final scheme = buildAppTheme(
+      final scheme = buildSkTheme(
         seedColor: Colors.teal,
         brightness: brightness,
       ).colorScheme;
@@ -30,7 +30,7 @@ void main() {
       testWidgets('選択時はプライマリで塗りつぶし、チェックマークは出さない', (tester) async {
         await tester.pumpWidget(
           wrap(
-            AppChoiceChip(label: 'A', selected: true, onSelected: (_) {}),
+            SkChoiceChip(label: 'A', selected: true, onSelected: (_) {}),
             brightness: brightness,
           ),
         );
@@ -53,7 +53,7 @@ void main() {
         Future<BorderSide> sideOf({required bool selected}) async {
           await tester.pumpWidget(
             wrap(
-              AppChoiceChip(label: 'A', selected: selected, onSelected: (_) {}),
+              SkChoiceChip(label: 'A', selected: selected, onSelected: (_) {}),
               brightness: brightness,
             ),
           );
@@ -71,7 +71,7 @@ void main() {
       testWidgets('無効状態では選択中でもプライマリで塗らない', (tester) async {
         await tester.pumpWidget(
           wrap(
-            const AppChoiceChip(label: 'A', selected: true),
+            const SkChoiceChip(label: 'A', selected: true),
             brightness: brightness,
           ),
         );
@@ -86,11 +86,7 @@ void main() {
     bool? value;
     await tester.pumpWidget(
       wrap(
-        AppChoiceChip(
-          label: 'A',
-          selected: false,
-          onSelected: (v) => value = v,
-        ),
+        SkChoiceChip(label: 'A', selected: false, onSelected: (v) => value = v),
       ),
     );
 
@@ -99,8 +95,8 @@ void main() {
   });
 
   test('seedColor でプライマリが変わる', () {
-    final a = buildAppTheme(seedColor: Colors.red).colorScheme.primary;
-    final b = buildAppTheme(seedColor: Colors.blue).colorScheme.primary;
+    final a = buildSkTheme(seedColor: Colors.red).colorScheme.primary;
+    final b = buildSkTheme(seedColor: Colors.blue).colorScheme.primary;
     expect(a, isNot(b));
   });
 }

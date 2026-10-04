@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 ///
 /// ボタンの文言を省略すると Material の多言語ラベル（OK / キャンセル）を使う。
 /// [destructive] が true のときは確定ボタンをエラー色にする。
-Future<bool> showAppConfirmDialog(
+Future<bool> showSkConfirmDialog(
   BuildContext context, {
   required String title,
   String? message,
