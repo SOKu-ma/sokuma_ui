@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/app_spacing.dart';
+import '../tokens/app_text_styles.dart';
 
 /// データがまだ無いときの表示。
 ///
@@ -49,7 +50,7 @@ class AppEmptyState extends StatelessWidget {
           const SizedBox(height: AppSpacing.lg),
           Text(
             title,
-            style: theme.textTheme.titleMedium,
+            style: AppTextStyles.title.copyWith(color: scheme.onSurface),
             textAlign: TextAlign.center,
           ),
           if (description != null) ...[

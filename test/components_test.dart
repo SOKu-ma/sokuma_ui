@@ -25,6 +25,18 @@ void main() {
     });
   });
 
+  testWidgets('AppSectionHeader はアプリのテーマに依らずトークンの太さ', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData(),
+        home: const Scaffold(body: AppSectionHeader(title: '見出し')),
+      ),
+    );
+    final style = tester.widget<Text>(find.text('見出し')).style!;
+    expect(style.fontWeight, AppTextStyles.subtitle.fontWeight);
+    expect(style.fontSize, AppTextStyles.subtitle.fontSize);
+  });
+
   group('AppEmptyState', () {
     testWidgets('説明とボタンは渡したときだけ出す', (tester) async {
       await tester.pumpWidget(

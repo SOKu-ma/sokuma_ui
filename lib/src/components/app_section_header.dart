@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/app_spacing.dart';
+import '../tokens/app_text_styles.dart';
 
 /// 画面内のまとまりにつける見出し。
 ///
@@ -28,7 +29,10 @@ class AppSectionHeader extends StatelessWidget {
               header: true,
               child: Text(
                 title,
-                style: Theme.of(context).textTheme.titleSmall,
+                // アプリ側のテーマに依らず、太さと大きさはトークンにそろえる。
+                style: AppTextStyles.subtitle.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
